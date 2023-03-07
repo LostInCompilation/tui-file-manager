@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49E6F2C629B701AC00F609D0 /* UI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49E6F2C529B701AC00F609D0 /* UI.cpp */; };
 		49FC38F829B67631001A1BEA /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49FC38F729B67631001A1BEA /* Main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +25,9 @@
 
 /* Begin PBXFileReference section */
 		49CDCBC929B67544009AFC76 /* tui-file-manager */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "tui-file-manager"; sourceTree = BUILT_PRODUCTS_DIR; };
+		49E6F2C329B6FF2300F609D0 /* Main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Main.h; path = ../include/Main.h; sourceTree = "<group>"; };
+		49E6F2C429B7019C00F609D0 /* UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UI.h; path = ../include/UI.h; sourceTree = "<group>"; };
+		49E6F2C529B701AC00F609D0 /* UI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = UI.cpp; path = ../src/UI.cpp; sourceTree = "<group>"; };
 		49FC38F729B67631001A1BEA /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Main.cpp; path = ../src/Main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -59,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				49FC38F729B67631001A1BEA /* Main.cpp */,
+				49E6F2C529B701AC00F609D0 /* UI.cpp */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -66,6 +71,8 @@
 		49FC38F629B67620001A1BEA /* include */ = {
 			isa = PBXGroup;
 			children = (
+				49E6F2C329B6FF2300F609D0 /* Main.h */,
+				49E6F2C429B7019C00F609D0 /* UI.h */,
 			);
 			name = include;
 			sourceTree = "<group>";
@@ -128,6 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49FC38F829B67631001A1BEA /* Main.cpp in Sources */,
+				49E6F2C629B701AC00F609D0 /* UI.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

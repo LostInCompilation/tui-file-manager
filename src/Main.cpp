@@ -1,12 +1,18 @@
-#include <iostream>
+//
+//  Main.cpp
+//  tui-file-manager
+//
+//  Created by Marc Schöndorf on 07.03.23.
+//
 
-// FTXUI
-#include "ftxui/component/component.hpp"       // for Menu, Horizontal, Renderer
+#include "Main.h"
 
-using namespace ftxui;
+//using namespace ftxui;
 
-int main()
+int main(int argc, char* argv[])
 {
+    auto screen = ftxui::ScreenInteractive::Fullscreen();
+    
     std::cout << "Hello" << std::endl;
     
     return 0;
