@@ -8,7 +8,7 @@
 #ifndef UI_h
 #define UI_h
 
-class UI : public ftxui::ComponentBase
+class UI //: public ftxui::ComponentBase
 {
 private:
     
