@@ -1,0 +1,7 @@
+XCode/Build
+XCode/DerivedData
+
+.DS_Store
+
+*.png
+
