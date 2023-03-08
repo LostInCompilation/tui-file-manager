@@ -9,7 +9,7 @@
 
 int main()
 {
-    CLI::App app("App description", "name");
+    CLI::App app(TUIFM_APP_DESCRIPTION, TUIFM_APP_NAME);
     
     
     CLI11_PARSE(app, CLI::argc(), CLI::argv());
