@@ -7,10 +7,17 @@
 
 #include "Main.h"
 
-//using namespace ftxui;
-
-int main(int argc, char* argv[])
+int main()
 {
+    //CLI::App app("App description", "name");
+    
+    
+    //CLI::argc();
+    //CLI11_PARSE(app);
+    
+    
+    
+    
     auto screen = ftxui::ScreenInteractive::Fullscreen();
     
     std::cout << "Hello" << std::endl;

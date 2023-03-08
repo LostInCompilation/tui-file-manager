@@ -39,7 +39,7 @@
 #include "ftxui/component/component.hpp"            // for Menu, Horizontal, Renderer
 
 // CLI11
-#include "CLI11.hpp"
+//#include "CLI11.hpp"
 
 // Project
 #include "UI.h"
