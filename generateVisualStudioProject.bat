@@ -1,8 +1,17 @@
-set "BUILD_TYPE=%1"
-set "TARGET_IDE=%2"
+@echo off
 
-rem if %BUILD_TYPE%==""(
-rem 	set "BUILD_TYPE=Release"
-rem )
+IF "%~1" == "" GOTO HELP_TEXT
 
-cmake -DFTXUI_BUILD_DOCS=OFF -DFTXUI_BUILD_EXAMPLES=OFF -DFTXUI_ENABLE_INSTALL=OFF -DCMAKE_BUILD_TYPE="%BUILD_TYPE%" -G "TARGET_IDE" -S . -B projects/ --fresh
+set "BUILD_TYPE=%~1"
+set "TARGET_IDE=%~2"
+
+cmake -DFTXUI_BUILD_DOCS=OFF -DFTXUI_BUILD_EXAMPLES=OFF -DFTXUI_ENABLE_INSTALL=OFF -DCMAKE_BUILD_TYPE="%BUILD_TYPE%" -G "%TARGET_IDE%" -S . -B projects/ --fresh
+
+exit
+
+:HELP_TEXT
+echo Usage:
+echo.
+echo generateVisualStudioProject.bat BUILD_TYPE VISUAL_STUDIO_VERSION
+echo     BUILD_TYPE: Debug, Release
+echo     VISUAL_STUDIO_VERSION: "Visual Studio 17 2022"
