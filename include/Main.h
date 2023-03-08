@@ -28,8 +28,8 @@
 #include <iostream>
 
 // FTXUI
-//#include "ftxui/component/screen_interactive.hpp"   // for Component, ScreenInteractive
-//#include "ftxui/component/component.hpp"            // for Menu, Horizontal, Renderer
+#include "ftxui/component/screen_interactive.hpp"   // for Component, ScreenInteractive
+#include "ftxui/component/component.hpp"            // for Menu, Horizontal, Renderer
 
 // Project
 #include "UI.h"

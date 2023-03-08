@@ -1,4 +1,4 @@
 #!/bin/sh
 
-cmake -S . -B build/
+cmake -DFTXUI_BUILD_DOCS=OFF -DFTXUI_BUILD_EXAMPLES=OFF -S . -B build/
 

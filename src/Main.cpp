@@ -11,7 +11,7 @@
 
 int main(int argc, char* argv[])
 {
-    //auto screen = ftxui::ScreenInteractive::Fullscreen();
+    auto screen = ftxui::ScreenInteractive::Fullscreen();
     
     std::cout << "Hello" << std::endl;
     
