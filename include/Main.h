@@ -32,6 +32,6 @@
 //#include "ftxui/component/component.hpp"            // for Menu, Horizontal, Renderer
 
 // Project
-//#include "UI.h"
+#include "UI.h"
 
 #endif /* Main_h */

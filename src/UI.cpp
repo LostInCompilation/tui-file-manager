@@ -7,4 +7,7 @@
 
 #include "Main.h"
 
-
+UI::UI()
+{
+    
+}

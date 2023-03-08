@@ -13,8 +13,7 @@ class UI //: public ftxui::ComponentBase
 private:
     
 public:
-    UI() = default;
-    
+    UI();
     
 };
 

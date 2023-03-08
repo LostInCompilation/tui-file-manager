@@ -1,4 +1,4 @@
 #!/bin/sh
 
-echo "Hello"
+cmake -S . -B build/
 
