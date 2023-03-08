@@ -23,13 +23,23 @@
 #endif
 
 //***********************************************************************
+// Version
+#define TUIFM_VERSION_MAJOR 0
+#define TUIFM_VERSION_MINOR 1
+#define TUIFM_VERSION_REVISION 0
+
+//***********************************************************************
 // Includes
 // System
 #include <iostream>
+#include <filesystem>
 
 // FTXUI
 #include "ftxui/component/screen_interactive.hpp"   // for Component, ScreenInteractive
 #include "ftxui/component/component.hpp"            // for Menu, Horizontal, Renderer
+
+// CLI11
+#include "CLI11.hpp"
 
 // Project
 #include "UI.h"

@@ -2,6 +2,6 @@
 
 cd build/
 
-make
+make -j8
 
 cd ..

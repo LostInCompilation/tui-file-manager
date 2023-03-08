@@ -1,31 +1,78 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.24)
 
+# Diagnostics
+message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
+#variable_watch(CMAKE_BUILD_TYPE)
+
+
+#set(CMAKE_OSX_DEPLOYMENT_TARGET "12.0" CACHE STRING "Minimum OS X deployment version")
+
+
+###########################################################
+# Use C++20
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED true)
+set(CMAKE_CXX_EXTENSIONS false)
+
+
+#set(CMAKE_CXX_FLAGS_DEBUG "-g")
+#add_compile_options(-O3)
+
+
+###########################################################
 # Our project
 project("tui-file-manager"
 	LANGUAGES CXX
 )
 
-# Use C++17
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED true)
-
 # Main executable
 add_executable("${PROJECT_NAME}"
+	include/Main.h
+	include/UI.h
 	src/Main.cpp
 	src/UI.cpp
 )
 
 # The project include dir
 target_include_directories("${PROJECT_NAME}" PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")
-
+target_include_directories("${PROJECT_NAME}" PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/lib")
 
 ###########################################################
 # Use FTXUI lib
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/ftxui")
+
 target_include_directories("${PROJECT_NAME}" PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/lib/ftxui/include")
+
 target_link_directories("${PROJECT_NAME}" PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/lib/ftxui")
+
 target_link_libraries("${PROJECT_NAME}"
 	PRIVATE screen
 	PRIVATE dom
 	PRIVATE component
 )
+
+###########################################################
+# Add as many warning as possible
+if (WIN32)
+	if (MSVC)
+		target_compile_options("${PROJECT_NAME}" PRIVATE "/W3")
+		target_compile_options("${PROJECT_NAME}" PRIVATE "/WX")
+		target_compile_options("${PROJECT_NAME}" PRIVATE "/wd4244")
+		target_compile_options("${PROJECT_NAME}" PRIVATE "/wd4267")
+		target_compile_options("${PROJECT_NAME}" PRIVATE "/D_CRT_SECURE_NO_WARNINGS")
+	endif()
+	# Force Win32 to UNICODE
+	target_compile_definitions("${PROJECT_NAME}" PRIVATE UNICODE _UNICODE)
+else()
+	target_compile_options("${PROJECT_NAME}" PRIVATE "-Wall")
+	target_compile_options("${PROJECT_NAME}" PRIVATE "-Wextra")
+	target_compile_options("${PROJECT_NAME}" PRIVATE "-pedantic")
+	#target_compile_options("${PROJECT_NAME}" PRIVATE "-Werror")
+	target_compile_options("${PROJECT_NAME}" PRIVATE "-Wmissing-declarations")
+	target_compile_options("${PROJECT_NAME}" PRIVATE "-Wdeprecated")
+	target_compile_options("${PROJECT_NAME}" PRIVATE "-Wshadow")
+endif()
+
+#target_compile_options("${PROJECT_NAME}" PRIVATE "-O3")
+
+
