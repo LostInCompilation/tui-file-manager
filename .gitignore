@@ -1,9 +1,5 @@
 .DS_Store
 
-# XCode build products and cache
-XCode/Build
-XCode/DerivedData
-
 # CMake build directory
 build/
 projects/
