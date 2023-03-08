@@ -13,6 +13,4 @@ then
 	echo "\nExample: generateProjects.sh Debug Xcode"
 fi
 
-exit 0
-
-cmake -DFTXUI_BUILD_DOCS=OFF -DFTXUI_BUILD_EXAMPLES=OFF -DFTXUI_ENABLE_INSTALL=OFF -S . -B projects/ --fresh -DCMAKE_BUILD_TYPE=$BUILD_TYPE -G $TARGET -T buildsystem=12
+cmake -DFTXUI_BUILD_DOCS=OFF -DFTXUI_BUILD_EXAMPLES=OFF -DFTXUI_ENABLE_INSTALL=OFF -S . -B build/ --fresh -DCMAKE_BUILD_TYPE=$BUILD_TYPE -G $TARGET -T buildsystem=12
