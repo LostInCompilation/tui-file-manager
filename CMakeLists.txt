@@ -18,6 +18,15 @@ set(CMAKE_CXX_EXTENSIONS false)
 #set(CMAKE_CXX_FLAGS_DEBUG "-g")
 #add_compile_options(-O3)
 
+###########################################################
+# Set options for libs
+set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
+
+set(FTXUI_BUILD_DOCS OFF)
+set(FTXUI_BUILD_EXAMPLES OFF)
+set(FTXUI_ENABLE_INSTALL OFF)
+
+set(CLI11_PRECOMPILED ON)
 
 ###########################################################
 # Our project
@@ -35,20 +44,28 @@ add_executable("${PROJECT_NAME}"
 
 # The project include dirs
 target_include_directories("${PROJECT_NAME}" PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")
-target_include_directories("${PROJECT_NAME}" PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/lib")
+#target_include_directories("${PROJECT_NAME}" PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/lib")
 
 ###########################################################
 # Use FTXUI lib
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/ftxui")
 
 target_include_directories("${PROJECT_NAME}" PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/lib/ftxui/include")
-
 target_link_directories("${PROJECT_NAME}" PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/lib/ftxui")
-
 target_link_libraries("${PROJECT_NAME}"
 	PRIVATE screen
 	PRIVATE dom
 	PRIVATE component
+)
+
+###########################################################
+# Use CLI11 lib
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/CLI11")
+
+target_include_directories("${PROJECT_NAME}" PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/lib/CLI11/include")
+target_link_directories("${PROJECT_NAME}" PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/lib/CLI11/src")
+target_link_libraries("${PROJECT_NAME}"
+	PRIVATE CLI11
 )
 
 ###########################################################

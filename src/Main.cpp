@@ -9,11 +9,10 @@
 
 int main()
 {
-    //CLI::App app("App description", "name");
+    CLI::App app("App description", "name");
     
     
-    //CLI::argc();
-    //CLI11_PARSE(app);
+    CLI11_PARSE(app, CLI::argc(), CLI::argv());
     
     
     
