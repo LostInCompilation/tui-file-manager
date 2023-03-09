@@ -32,6 +32,7 @@
 const int32_t TUIFM_VERSION_MAJOR = 0;
 const int32_t TUIFM_VERSION_MINOR = 1;
 const int32_t TUIFM_VERSION_REVISION = 0;
+const std::string TUIFM_VERSION_STRING = "v" + std::to_string(TUIFM_VERSION_MAJOR) + "." + std::to_string(TUIFM_VERSION_MINOR) + "." + std::to_string(TUIFM_VERSION_REVISION);
 
 const std::string TUIFM_APP_NAME = "tui-file-manager";
 const std::string TUIFM_APP_DESCRIPTION = "A file manager for your terminal with a nice GUI.";
