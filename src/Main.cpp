@@ -16,8 +16,10 @@ std::string GetAppVersion()
 
 int main()
 {
+    GaugeDirection a;
+    
     CLI::App app(TUIFM_APP_DESCRIPTION, TUIFM_APP_NAME);
-    app.get_formatter()->column_width(40);
+    //app.get_formatter()->column_width(40);
     app.get_formatter()->label("TEXT", "STRING");
     app.footer("This is a footer!");
     

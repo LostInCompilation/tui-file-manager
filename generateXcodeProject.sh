@@ -9,4 +9,4 @@ then
 	BUILD_TYPE="Release"
 fi
 
-cmake -DCMAKE_BUILD_TYPE="${BUILD_TYPE}" -G Xcode -T buildsystem=12 -S . -B projects/ --fresh
+cmake -DCMAKE_BUILD_TYPE="${BUILD_TYPE}" -G Xcode -T buildsystem=12 -S . -B projects/
