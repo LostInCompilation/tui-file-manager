@@ -37,14 +37,39 @@ project("tui-file-manager"
 # Main executable
 add_executable("${PROJECT_NAME}"
 	include/Main.h
-	include/UI.h
+	include/FileManagerUI.h
 	src/Main.cpp
-	src/UI.cpp
+	src/FileManagerUI.cpp
 )
 
-# The project include dirs
+# The projects include directories
 target_include_directories("${PROJECT_NAME}" PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")
 #target_include_directories("${PROJECT_NAME}" PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/lib")
+
+###########################################################
+# Add as many warning as possible
+if (WIN32)
+	if (MSVC)
+		target_compile_options("${PROJECT_NAME}" PRIVATE "/W3")
+		target_compile_options("${PROJECT_NAME}" PRIVATE "/WX")
+		target_compile_options("${PROJECT_NAME}" PRIVATE "/wd4244")
+		target_compile_options("${PROJECT_NAME}" PRIVATE "/wd4267")
+		target_compile_options("${PROJECT_NAME}" PRIVATE "/D_CRT_SECURE_NO_WARNINGS")
+	endif()
+	# Force Win32 to UNICODE
+	target_compile_definitions("${PROJECT_NAME}" PRIVATE UNICODE _UNICODE)
+else()
+	target_compile_options("${PROJECT_NAME}" PRIVATE "-Wall")
+	target_compile_options("${PROJECT_NAME}" PRIVATE "-Wsign-conversion")
+	#add_compile_options("-Weverything")
+	#add_compile_options("-Wsign-conversion")
+	target_compile_options("${PROJECT_NAME}" PRIVATE "-Wextra")
+	target_compile_options("${PROJECT_NAME}" PRIVATE "-pedantic")
+	#target_compile_options("${PROJECT_NAME}" PRIVATE "-Werror")
+	target_compile_options("${PROJECT_NAME}" PRIVATE "-Wmissing-declarations")
+	target_compile_options("${PROJECT_NAME}" PRIVATE "-Wdeprecated")
+	target_compile_options("${PROJECT_NAME}" PRIVATE "-Wshadow")
+endif()
 
 ###########################################################
 # Use FTXUI lib
@@ -68,28 +93,7 @@ target_link_libraries("${PROJECT_NAME}"
 	PRIVATE CLI11
 )
 
-###########################################################
-# Add as many warning as possible
-if (WIN32)
-	if (MSVC)
-		target_compile_options("${PROJECT_NAME}" PRIVATE "/W3")
-		target_compile_options("${PROJECT_NAME}" PRIVATE "/WX")
-		target_compile_options("${PROJECT_NAME}" PRIVATE "/wd4244")
-		target_compile_options("${PROJECT_NAME}" PRIVATE "/wd4267")
-		target_compile_options("${PROJECT_NAME}" PRIVATE "/D_CRT_SECURE_NO_WARNINGS")
-	endif()
-	# Force Win32 to UNICODE
-	target_compile_definitions("${PROJECT_NAME}" PRIVATE UNICODE _UNICODE)
-else()
-	target_compile_options("${PROJECT_NAME}" PRIVATE "-Wall")
-	target_compile_options("${PROJECT_NAME}" PRIVATE "-Wextra")
-	target_compile_options("${PROJECT_NAME}" PRIVATE "-pedantic")
-	#target_compile_options("${PROJECT_NAME}" PRIVATE "-Werror")
-	target_compile_options("${PROJECT_NAME}" PRIVATE "-Wmissing-declarations")
-	target_compile_options("${PROJECT_NAME}" PRIVATE "-Wdeprecated")
-	target_compile_options("${PROJECT_NAME}" PRIVATE "-Wshadow")
-endif()
-
+#############################################################
 #target_compile_options("${PROJECT_NAME}" PRIVATE "-O3")
 
 

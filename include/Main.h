@@ -11,6 +11,7 @@
 //***********************************************************************
 // System includes
 #include <iostream>
+#include <memory>
 #include <filesystem>
 
 //***********************************************************************
@@ -47,6 +48,6 @@ const std::string TUIFM_APP_DESCRIPTION = "A file manager for your terminal with
 #include "CLI/CLI.hpp"
 
 // Project
-#include "UI.h"
+#include "FileManagerUI.h"
 
 #endif /* Main_h */
