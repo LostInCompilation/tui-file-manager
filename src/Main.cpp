@@ -9,19 +9,28 @@
 
 using namespace ftxui;
 
-std::string GetAppVersion()
+std::string GetAppVersionString()
 {
-    return TUIFM_APP_NAME + " - Version: " + TUIFM_VERSION_STRING;
+    return TUIFM_APP_CMAKE_NAME + " - Version: " + TUIFM_VERSION_STRING;
 }
+
+#include "CLI/StringTools.hpp"
 
 int main()
 {
-    GaugeDirection a;
+    //CLI::App app(TUIFM_APP_DESCRIPTION, TUIFM_APP_NAME);
+    //CLI::App app{"My Prog description", "AppName"};
+    CLI::App app("A long description\nNew line. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.", TUIFM_APP_CMAKE_NAME); //TUIFM_APP_NAME
     
-    CLI::App app(TUIFM_APP_DESCRIPTION, TUIFM_APP_NAME);
-    //app.get_formatter()->column_width(40);
+    // Testing
+    //app.get_formatter()->label("Usage", "Run");
+    //app.usage("This is the usage.");
+    
+    //app.get_formatter()->column_width(30);
+    
     app.get_formatter()->label("TEXT", "STRING");
-    app.footer("This is a footer!");
+    //app.footer("This is a footer!");
+    app.footer("A long footer\nNew line. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.");
     
     // Enable Windows style arguments
 #ifdef TARGET_OS_WINDOWS
@@ -29,15 +38,44 @@ int main()
 #endif
     
     bool showHiddenFiles = true;
-    std::string startingPath = "";
+    std::string startingPath = "pax";
+    int i = 0;
     
-    app.set_version_flag("-v,--version", GetAppVersion)->group("Info");
-    app.add_option("-p,--path", startingPath, "Path to start in")->required()->group("Settings");
-    app.add_option("-a,-b,--multiple", "Multiple");
-    app.add_option("--only-long", "Long");
-    app.add_flag("--hidden,--hide", showHiddenFiles, "Show or hide hidden files")->group("Settings");
-    app.add_option("-r", "Short req.")->required();
+    app.set_help_all_flag("--help-all", "Expand all help");
+    
+    app.set_version_flag("-v,--version", GetAppVersionString)->group("INFO");
+    app.add_option("-p,--path", startingPath, "Path to start in")->group("SETTINGS")->capture_default_str();//->required();
+    app.add_option("-a,-b,-c,--multiple", i, "Multiple")->group("OPTIONS")->configurable();
+    app.add_option("-d", i, "Multiple2")->group("gr42")->configurable();
+    app.add_option("-k,-m,-n,-o,-q,-w,-e", "Long short names");
+    app.add_option("--only-long", "Long")->configurable();
+    app.add_flag("--hidden,--hide", showHiddenFiles, "Show or hide hidden files")->group("SETTINGS");
+    app.add_option("-r", "Short req. Lorem ipsum dolor sit amet,\nconsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.");//->required();
     app.add_option("-s", "Short");
+    app.add_option("-l,--this-is-a-very-long-option-for-testing", "Very long");
+    
+    // Positional
+    app.add_option("pos", "A positional");
+    //app.add_option("posreq", "A required positional")->required();
+    app.add_option("longpos", "Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.");
+    
+    // Test for scrambled order of short and long options
+    app.add_option("-x,--xlong,-y,--ylong", "Scrambled order");
+    
+    // Subcommand tests
+    CLI::App* start = app.add_subcommand("startxxxxxxxxxxxxxxxxxxxxxxx", "A great subcommand");
+    CLI::App* stop = app.add_subcommand("stop", "Do you really want to stop?");
+    
+    start->add_option("-f,--fileloooooooooong", "File name");
+    stop->add_flag("-c,--count", "Counter");
+    
+    // Sub subcommand
+    CLI::App* subsub = start->add_subcommand("subsub", "A sub subcommand for start");
+    std::string subsubstr = "";
+    subsub->add_flag("-j,--jsubsub", "Flag of sub subcommand");
+    subsub->add_option("-g,--gstr", subsubstr, "Sub sub string")->group("SUBSUB GROUP");
+    
+    //std::cout << "CONFIG:\n" << app.config_to_str(true, true) << std::endl << "--------------------------------------------------\n";
     
     //app.add_flag("--hidden,!--no-hidden", showHiddenFiles, "Show or hide hidden files");
     //app.add_flag("--monitor,!--no-monitor", showHiddenFiles, "Monitor the directories for file system changes");
@@ -47,9 +85,13 @@ int main()
     //CLI11_PARSE(app, CLI::argc(), CLI::argv());
     
     // Debug
-    const char* argv[2] = {"bin_path", "-h"};
-    CLI11_PARSE(app, 2, argv);
-    //app.parse(1, &argv[0]);
+    const char* argv[4] = {"", "--help-all", "-p", " "};
+    //const char* argv[2] = {"", "-h"};
+    //const char* argv[3] = {"", "start", "-h"};
+    CLI11_PARSE(app, 4, argv);
+
+    
+    
     
     std::cout << "Start path: " << startingPath << std::endl
                 << "Show hidden: " << std::boolalpha << showHiddenFiles << std::endl;

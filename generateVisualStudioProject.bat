@@ -14,4 +14,4 @@ echo Usage:
 echo.
 echo generateVisualStudioProject.bat BUILD_TYPE VISUAL_STUDIO_VERSION
 echo     BUILD_TYPE: Debug, Release
-echo     VISUAL_STUDIO_VERSION: "Visual Studio 17 2022"
+echo     VISUAL_STUDIO_VERSION: "Visual Studio 17 2022" or "Visual Studio 16 2019" or older...

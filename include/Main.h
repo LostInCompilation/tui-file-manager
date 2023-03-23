@@ -12,6 +12,7 @@
 // System includes
 #include <iostream>
 #include <memory>
+#include <string>
 //#include <filesystem>
 
 //***********************************************************************

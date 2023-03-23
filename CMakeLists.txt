@@ -1,9 +1,9 @@
-cmake_minimum_required(VERSION 3.24)
+cmake_minimum_required(VERSION 3.25)
 
-# Diagnostics
+# Print build type
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
-#variable_watch(CMAKE_BUILD_TYPE)
 
+# TODO: Check if needed for macOS
 #set(CMAKE_OSX_DEPLOYMENT_TARGET "12.0" CACHE STRING "Minimum OS X deployment version")
 
 ###########################################################
@@ -14,7 +14,7 @@ set(CMAKE_CXX_EXTENSIONS false)
 
 ###########################################################
 # Set options for libs
-set(CMAKE_POLICY_DEFAULT_CMP0077 NEW) # Needed to set options in subprojects from here
+set(CMAKE_POLICY_DEFAULT_CMP0077 NEW) # Needed to set options in subprojects from parent project
 
 set(FTXUI_BUILD_DOCS OFF)
 set(FTXUI_BUILD_EXAMPLES OFF)
@@ -53,9 +53,9 @@ add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/ftxui")
 target_include_directories("${PROJECT_NAME}" PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/lib/ftxui/include")
 target_link_directories("${PROJECT_NAME}" PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/lib/ftxui")
 target_link_libraries("${PROJECT_NAME}"
-	PRIVATE screen
-	PRIVATE dom
-	PRIVATE component
+	PRIVATE ftxui::screen
+	PRIVATE ftxui::dom
+	PRIVATE ftxui::component
 )
 
 ###########################################################

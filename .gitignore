@@ -4,6 +4,5 @@
 build/
 projects/
 
-# Remove when done
+# WIP images. Remove when done
 *.png
-
