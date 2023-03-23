@@ -1,12 +1,12 @@
 //
-//  UI.h
+//  FileManagerUI.h
 //  tui-file-manager
 //
 //  Created by Marc Schöndorf on 07.03.23.
 //
 
-#ifndef UI_h
-#define UI_h
+#ifndef FileManagerUI_h
+#define FileManagerUI_h
 
 class FileManagerUI : public ftxui::ComponentBase
 {
@@ -40,4 +40,4 @@ public:
     bool OnEvent(ftxui::Event event) override;
 };
 
-#endif /* UI_h */
+#endif /* FileManagerUI_h */

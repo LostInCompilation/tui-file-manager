@@ -13,7 +13,7 @@
 #include <iostream>
 #include <memory>
 #include <string>
-//#include <filesystem>
+#include <filesystem>
 
 //***********************************************************************
 // Determine the target OS
@@ -43,6 +43,7 @@
 #include "CLI/CLI.hpp"
 
 // Project
+#include "FileSystem.h"
 #include "FileManagerUI.h"
 
 #endif /* Main_h */

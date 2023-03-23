@@ -34,8 +34,10 @@ project("tui-file-manager"
 add_executable("${PROJECT_NAME}"
 	include/Main.h
 	include/FileManagerUI.h
+	include/FileSystem.h
 	src/Main.cpp
 	src/FileManagerUI.cpp
+	src/FileSystem.cpp
 )
 
 # The projects include directories
